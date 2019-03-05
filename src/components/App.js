@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
+import { fetchUser } from '../redux/actions';
 import store from "../redux/store";
 
 class App extends Component {
+  componentDidMount() {
+    store.dispatch(fetchUser('u2kjfladadwddj9'))
+  }
   render() {
     return (
       <Router>
