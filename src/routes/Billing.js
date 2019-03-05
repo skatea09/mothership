@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as billingActions from '../redux/actions/billing';
 import PropTypes from 'prop-types';
+import BillingView from '../components/Billing';
 
 class Billing extends Component {
   componentDidMount() {
@@ -10,8 +11,8 @@ class Billing extends Component {
   }
   render() {
     const { balance } = this.props;
-    if (!balance) return (<div>Loading 0</div>)
-    return (<div>At Billing Page</div>)
+    if (!balance) return (<div>Loading</div>)
+    return (<BillingView />)
   }
 }
 
