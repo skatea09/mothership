@@ -1,13 +1,10 @@
-import axios from "axios";
 import { put, takeLatest, call, select } from "redux-saga/effects";
 import {
   FETCH_USER_REQUEST,
   fetchUserSuccess,
   fetchUserFailure
 } from "../actions/user";
-
-const fetchUserApi = userId =>
-  axios.get(`https://challenge.mothership.com/user/${userId}`);
+import { fetchUserApi } from '../../api';
 
 function* fetchUserAsync() {
   const { user: { id } } = yield select();

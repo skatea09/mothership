@@ -1,18 +1,12 @@
-import axios from "axios";
 import { takeLatest, select, call, put } from "redux-saga/effects";
 import {
   FETCH_BILLING_REQUEST,
   fetchBillingSuccess,
   fetchBillingFailure
 } from "../actions/billing";
-
-const fetchBillingApi = organizationId =>
-  axios.get(
-    `https://challenge.mothership.com/organization/${organizationId}/billing`
-  );
+import { fetchBillingApi } from '../../api';
 
 function* fetchBillingAsync() {
-  console.log('async');
   const {
     user: { organizationId }
   } = yield select();
@@ -25,7 +19,6 @@ function* fetchBillingAsync() {
 }
 
 function* watchFetchBilling() {
-  console.log('taking latest')
   yield takeLatest(FETCH_BILLING_REQUEST, fetchBillingAsync);
 }
 
