@@ -3,9 +3,17 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import ReactTable from "react-table";
 import values from "lodash/values";
+import { format, parse } from 'date-fns';
+import { usCurrency } from '../../../utils/currency';
+
 
 const List = ({ items }) => {
-  console.log("ittt", items);
+  const Locations = ({ value: { name, city, state, zip } }) => (
+    <div className="number truncate">
+      <div className="truncate pb-2">{name}</div>
+      <div className="truncate text-grey-darker text-xs">{`${city}, ${state} ${zip}`}</div>
+    </div>
+  );
   return (
     <div className="mt-6">
       <ReactTable
@@ -19,7 +27,9 @@ const List = ({ items }) => {
         columns={[
           {
             Header: "Date",
-            accessor: "date"
+            id: "date",
+            accessor: props => format(parse(props.date), 'MM/DD/YYYY')
+
           },
           {
             Header: "Shipment",
@@ -28,22 +38,12 @@ const List = ({ items }) => {
           {
             Header: "Locations",
             accessor: "pickupLocation",
-            Cell: ({ value: { name, city, state, zip } }) => (
-              <div className="number truncate">
-                <div className="truncate">{name}</div>
-                <div className="truncate">{`${city}, ${state} ${zip}`}</div>
-              </div>
-            )
+            Cell: props => Locations(props)
           },
           {
             Header: "",
             accessor: "deliveryLocation",
-            Cell: ({ value: { name, city, state, zip } }) => (
-              <div className="number truncate">
-                <div className="truncate">{name}</div>
-                <div className="truncate">{`${city}, ${state} ${zip}`}</div>
-              </div>
-            )
+            Cell: props => Locations(props)
           },
           {
             Header: "Reference",
@@ -51,7 +51,8 @@ const List = ({ items }) => {
           },
           {
             Header: "Amount",
-            accessor: "amount"
+            id: "amount",
+            accessor: ({ amount }) => usCurrency(amount)
           },
           {
             Header: "Documents",

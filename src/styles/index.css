@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .ReactTable {
-  @apply border-0;
+  @apply border-0 font-light text-sm;
 }
 .ReactTable .rt-thead .rt-th {
   @apply text-left font-bold border-0;
