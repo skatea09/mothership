@@ -11,6 +11,10 @@ const billing = (state = initialState, { type, payload }) => {
       const { billing: { balance, items, paymentMethods } } = payload;
       return { ...state, balance, items, paymentMethods };
     }
+    case "FETCH_BILLING_REQUEST": {
+      console.log('fetch billing request');
+      return state;
+    }
     default:
       return state;
   }

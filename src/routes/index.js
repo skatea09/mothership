@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
+import PrivateRoute from './AuthRoutes/Private';
 import Billing from "./Billing";
 import Home from './Home';
 
@@ -12,8 +13,8 @@ const AppRoutes = () => (
         <Redirect to={`${props.location.pathname.toLowerCase()}`} />
       )}
     />
-    <Route exact path="/" render={Home} />
-    <Route path="/billing" component={Billing} />
+    <PrivateRoute exact path="/" component={Home} />
+    <PrivateRoute path="/billing" component={Billing} />
     <Route component={() => <div>No match!</div>} />
   </Switch>
 );

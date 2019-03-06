@@ -1,21 +1,17 @@
-import axios from "axios";
+export const FETCH_BILLING_REQUEST = 'FETCH_BILLING_REQUEST';
+export const FETCH_BILLING_SUCCESS = 'FETCH_BILLING_SUCCESS';
+export const FETCH_BILLING_FAILURE = 'FETCH_BILLING_FAILURE';
 
-export const fetchBilling = () => async (dispatch, getState) => {
-  const { organizationId } = getState().user;
-  return axios
-    .get(
-      `https://challenge.mothership.com/organization/${organizationId}/billing`
-    )
-    .then(res => {
-      const { data } = res;
-      console.log('daaaata', data);
-        dispatch({
-          type: 'FETCH_BILLING_SUCCESS',
-          payload: { billing: data }
-        })
-      console.log('other res', res);
-    })
-    .catch(error => {
-      return Promise.reject(error);
-    });
-};
+export const fetchBilling = () => ({
+  type: FETCH_BILLING_REQUEST,
+});
+
+export const fetchBillingSuccess = billing => ({
+  type: FETCH_BILLING_SUCCESS,
+  payload: { billing }
+});
+
+export const fetchBillingFailure = error => ({
+  type: FETCH_BILLING_FAILURE,
+  payload: { error }
+})

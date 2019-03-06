@@ -1,8 +1,16 @@
-import React from 'react';
-import { Redirect } from 'react-router-dom';
+import React from "react";
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-const Home = () => (
-  <Redirect to="/billing" />
-);
+const Home = ({ hasOrgId }) => {
+  console.log('orggg', hasOrgId)
+  return hasOrgId ? <Redirect to="/billing" /> : <div>Home Loading</div>;
+}
+Home.propTypes = {
+  hasOrgId: PropTypes.bool.isRequired,
+};
 
-export default Home;
+export default connect(state => ({
+  hasOrgId: !!state.user.organizationId
+}))(Home);
