@@ -1,3 +1,23 @@
 @tailwind preflight;
 @tailwind components;
 @tailwind utilities;
+
+.ReactTable {
+  @apply border-0;
+}
+.ReactTable .rt-thead .rt-th {
+  @apply text-left font-bold border-0;
+}
+
+
+.ReactTable .rt-thead.-header {
+  box-shadow: none;
+}
+
+.ReactTable .rt-tbody .rt-tr-group {
+  @apply border-0;
+}
+
+.ReactTable .rt-tbody .rt-td {
+  @apply border-0;
+}

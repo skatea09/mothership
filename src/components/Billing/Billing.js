@@ -1,9 +1,8 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
 import Header from "./Header";
 import Balance from './Balance';
 import Search from './Search';
+import List from './List';
 
 const Billing = () => (
   <div className="mx-8">
@@ -12,7 +11,8 @@ const Billing = () => (
       <Balance />
       <Search />
     </div>
+    <List />
   </div>
 );
 
-export default connect(null)(Billing);
+export default Billing;

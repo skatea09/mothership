@@ -6182,6 +6182,28 @@ table {
   z-index: auto;
 }
 
+.ReactTable {
+  border-width: 0;
+}
+
+.ReactTable .rt-thead .rt-th {
+  text-align: left;
+  font-weight: 700;
+  border-width: 0;
+}
+
+.ReactTable .rt-thead.-header {
+  box-shadow: none;
+}
+
+.ReactTable .rt-tbody .rt-tr-group {
+  border-width: 0;
+}
+
+.ReactTable .rt-tbody .rt-td {
+  border-width: 0;
+}
+
 @media (min-width: 576px) {
   .sm\:list-reset {
     list-style: none;
