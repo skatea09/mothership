@@ -12,12 +12,14 @@ const user = (state = initialState, { type, payload }) => {
       const {
         user: { id, firstName, lastName, organizationId }
       } = payload;
-      console.log('orgId', organizationId);
       return { ...state, id, firstName, lastName, organizationId };
     }
     case "FETCH_USER_REQUEST": {
-      console.log('heeeere', payload);
-      return state;
+      return {...state, isFetching: true };
+    }
+    case "FETCH_USER_FAILURE": {
+      const { error } = payload;
+      return {...state, isFetching: false, error };
     }
     default:
       return state;
