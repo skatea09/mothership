@@ -11,7 +11,6 @@ const PrivateRoute = ({
   <Route
     {...rest}
     render={props => {
-      // instead of id check real version would have auth check
       if (!id)
         return (
           <Redirect
