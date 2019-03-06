@@ -22,9 +22,10 @@
     "start": "npm run watch:css & react-scripts start",
     "build": "npm run build:css && react-scripts build",
     "test": "react-scripts test",
-    "build:css": "postcss src/styles/index.css -o src/index.css",
+    "build:css": "postcss src/styles/index.css -o src/index.css && npm run purgecss",
     "watch:css": "postcss src/styles/index.css -o src/index.css -w",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "purgecss": "purgecss -c purgecss.config.js -o src"
   },
   "eslintConfig": {
     "extends": "react-app"
