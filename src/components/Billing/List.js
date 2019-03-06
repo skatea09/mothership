@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import ReactTable from "react-table";
 import values from "lodash/values";
 import { format, parse, getTime } from 'date-fns';
-import { usCurrency } from '../../../utils/currency';
+import { usCurrency } from '../../utils/currency';
 
 
 const List = ({ items }) => {
