@@ -6,7 +6,7 @@ const Search = () => (
       type="text"
       className="outline-none pl-2"
       placeholder="Search Your Shipments"
-      style={{ minWidth: '300px' }}
+      style={{ minWidth: '350px' }}
     />
     <i className="fa fa-search text-grey-dark pl-2" style={{ transform: 'scaleX(-1)'}}/>
   </div>
