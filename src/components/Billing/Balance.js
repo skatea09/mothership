@@ -21,7 +21,10 @@ const Balance = ({ balance, paymentMethods }) => {
             {allPaymentMethods
               .filter(method => !method.isDefault)
               .map(({ brand, last4 }) => (
-                <div className="text-sm font-medium mb-2 ml-8">{`${brand} *${last4}`}</div>
+                <div
+                  key={last4}
+                  className="text-sm font-medium mb-2 ml-8"
+                >{`${brand} *${last4}`}</div>
               ))}
             <div className="flex mt-6">
               <div className="w-4 h-4 border-grey-light border-2 rounded-full mr-4" />
@@ -38,7 +41,7 @@ const Balance = ({ balance, paymentMethods }) => {
 
 Balance.propTypes = {
   balance: PropTypes.number.isRequired,
-  defaultPaymentMethod: PropTypes.object.isRequired
+  paymentMethods: PropTypes.object.isRequired
 };
 
 export default connect(state => ({

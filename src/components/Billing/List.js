@@ -14,7 +14,7 @@ const List = ({ items }) => {
       <div className="truncate text-grey-darker text-xs">{`${city}, ${state} ${zip}`}</div>
     </div>
   );
-  const Documents = ({ value }) => {
+  const Documents = ({ value, original: { referenceNumber } }) => {
     const docTypes = value.map(doc => {
       if (doc.type === "billOfLading") return "BOL/POL";
       if (doc.type === "invoice") return "Invoice";
@@ -26,7 +26,12 @@ const List = ({ items }) => {
         <MyPopup position="bottom right">
           <div className="mr-4 ml-8 mt-2 mb-4">
             {docTypes.map(name => (
-              <div className="text-grey-light mt-2 text-sm font-medium">{name}</div>
+              <div
+                key={referenceNumber}
+                className="text-grey-light mt-2 text-sm font-medium"
+              >
+                {name}
+              </div>
             ))}
           </div>
         </MyPopup>
