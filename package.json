@@ -38,6 +38,7 @@
   ],
   "devDependencies": {
     "postcss-cli": "^6.1.2",
+    "purgecss": "^1.1.0",
     "redux-logger": "^3.0.6",
     "tailwindcss": "^0.7.4"
   }
