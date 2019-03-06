@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import ReactTable from "react-table";
 import values from "lodash/values";
-import { format, parse } from 'date-fns';
+import { format, parse, getTime } from 'date-fns';
 import { usCurrency } from '../../../utils/currency';
 
 
@@ -17,7 +17,7 @@ const List = ({ items }) => {
   return (
     <div className="mt-6">
       <ReactTable
-        data={items}
+        data={items.sort((a, b) => getTime(b.date) - getTime(a.date))}
         showPagination={false}
         defaultPageSize={items.length}
         showPaginationBottom={false}
