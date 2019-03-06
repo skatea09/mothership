@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import ReactTable from "react-table";
 import values from "lodash/values";
-import { format, parse, getTime } from 'date-fns';
-import { usCurrency } from '../../utils/currency';
-
+import { format, parse, getTime } from "date-fns";
+import MyPopup from "../common/MyPopup";
+import { usCurrency } from "../../utils/currency";
 
 const List = ({ items }) => {
   const Locations = ({ value: { name, city, state, zip } }) => (
@@ -14,6 +14,25 @@ const List = ({ items }) => {
       <div className="truncate text-grey-darker text-xs">{`${city}, ${state} ${zip}`}</div>
     </div>
   );
+  const Documents = ({ value }) => {
+    const docTypes = value.map(doc => {
+      if (doc.type === "billOfLading") return "BOL/POL";
+      if (doc.type === "invoice") return "Invoice";
+      return "Unknown";
+    });
+    return (
+      <div className="flex">
+        <div className="text-blue-dark">View Docs</div>
+        <MyPopup position="bottom right">
+          <div className="mr-4 ml-8 mt-2 mb-4">
+            {docTypes.map(name => (
+              <div className="text-grey-light mt-2 text-sm font-medium">{name}</div>
+            ))}
+          </div>
+        </MyPopup>
+      </div>
+    );
+  };
   return (
     <div className="mt-6">
       <ReactTable
@@ -28,8 +47,7 @@ const List = ({ items }) => {
           {
             Header: "Date",
             id: "date",
-            accessor: props => format(parse(props.date), 'MM/DD/YYYY')
-
+            accessor: props => format(parse(props.date), "MM/DD/YYYY")
           },
           {
             Header: "Shipment",
@@ -57,7 +75,7 @@ const List = ({ items }) => {
           {
             Header: "Documents",
             accessor: "documents",
-            Cell: ({ value }) => <div>View Docs</div>
+            Cell: props => Documents(props)
           }
         ]}
       />
